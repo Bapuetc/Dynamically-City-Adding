@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Array Demo</title>
+    	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    	<script>
+        	var cities = ["Select a City", "Delhi", "Hyd", "Chennai"];
+        	function LoadCities(){
+            	var lstCities = document.getElementById("lstCities");
+                lstCities.innerHTML = "";
+                for(var item of cities) {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    lstCities.appendChild(option);
+            	}
+        	}
+        	function bodyload(){
+                LoadCities();
+        	}
+        	function AddCity(){
+            	var txtName = document.getElementById("txtName");
+                cities.push(txtName.value);
+                alert("City Added");
+            	txtName.value="";
+                LoadCities();
+        	}
+        	function DeleteClick(){
+            	var selectedCity = document.getElementById("lstCities").value;
+            	var cityIndex = cities.indexOf(selectedCity);
+            	var choice = confirm("Are you sure, Want to Delete?");
+                if(choice==true) {
+                cities.splice(cityIndex,1);
+                LoadCities();
+            	}
+        	}
+        	function DeleteAll(){
+      	      document.getElementById("lstCities").innerHTML ="";
+        	}
+        </script>
+	</head>
+	<body onload="bodyload()" class="container-fluid">
+    	<h2 class="text-center text-primary">Array Manipulations</h2>
+    	<div class="row">
+            <div class="col-3">
+           	<div class="form-group">
+                    <label>Add City</label>
+                    <div class="input-group">
+                        <input type="text" id="txtName" class="form-control">
+               	     <div class="input-group-append">
+                            <button onclick="AddCity()" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+               </div>
+           	<div class="form-group">
+ 	            <label>Select a City</label>
+                 <div>
+                    <select class="form-control" id="lstCities">
+ 
+                    </select>
+                 </div>
+               </div>
+           	<div class="form-group">
+                <div>
+                    <button onclick="DeleteClick()" class="btn btn-danger btn-block">Delete City</button>
+                    <button onclick="DeleteAll()" class="btn btn-info btn-block">Delete All</button>
+                </div>
+               </div>
+            </div>
+        	<div class="col-9">
+ 
+            </div>
+        </div>
+	</body>
+</html>
